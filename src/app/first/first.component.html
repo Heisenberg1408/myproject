@@ -1,0 +1,24 @@
+<form [formGroup]="form" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control" name="name" formControlName="Name" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" name="email" formControlName="EMail" />
+    </div>
+    <div formArrayName="Phones">
+        <div class="form-group" *ngFor="let phone of form.controls['Phones'].controls; let i = index">
+            <label>Телефон</label>
+            <input class="form-control" formControlName="{{i}}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-default" (click)="addPhone()">
+            Добавить телефон
+        </button>
+        <button class="btn btn-default" [disabled]="form.invalid">
+            Отправить
+        </button>
+    </div>
+</form>
